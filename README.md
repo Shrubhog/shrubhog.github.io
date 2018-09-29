@@ -7,3 +7,4 @@ I've just started a little template engine for text-based monster fighting.
 
 ### September 29, 2018
 Time to start working on the thing again.
+I've added things. Lots of them.
