@@ -22,3 +22,5 @@ I've added things. Lots of them.
 I'm thinking of creating an incremental game, which is my favorite game style, based on coffee. First, you're a man picking money from his couch, then you decide to buy a coffee machine. Make coffee for your neighbors, expand, upgrade, get a permanent  place, and maybe even split off into a coffee country. But it's just an idea. For now.
 ## October 8, 2018
 Already made the coffee thing a few days ago.
+## November 16, 2018
+I've been busy. I've made my first release of the game, [Expresso](https://shrubhog.github.io/expresso), and committed over 60 times to it. Now, it has favicons, but the basic style of the game is still really non-existent.
