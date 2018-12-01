@@ -31,4 +31,5 @@ Expresso features are in a dry spell, so I've been thinking about making another
 * Eventually, your thirst for leaves becomes so great you harvest whole planets for their leaves.
 * You can upgrade your employees' equipment to increase leaf production. (e.g. short stick &rarr; long stick &rarr; ... &rarr; steel plant-sensing boomerang)
 * In the end, to ascend (restart the game with perks), you jump in the leaf pile.
+
 I've been thinking about it a lot, and I'm even thinking of adding a tabs with Bootstrap. I have to do it in the beginning, though, because I don't want to have to rip the whole thing apart and put it back together after I've finished the game.
