@@ -36,3 +36,5 @@ I've been thinking about it a lot, and I'm even thinking of adding a tabs with B
 
 ## January 4 2019
 Added tabs to [Expresso](https://github.com/Shrubhog/expresso). New Years Resolution: commit more.
+## January 11, 2019
+Added [Jemoji](https://github.com/jekyll/jemoji) to the Pages. :smile:
