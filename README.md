@@ -38,3 +38,53 @@ I've been thinking about it a lot, and I'm even thinking of adding a tabs with B
 Added tabs to [Expresso](https://github.com/Shrubhog/expresso). New Years Resolution: commit more.
 ## January 11, 2019
 Added [Jemoji](https://github.com/jekyll/jemoji) to the Pages. :smile:
+I was sitting down today and learning about the Live Coding features on VS Code, and came across the Server Sharing section. Because of my train of thought being more like a flying bouncy castle, I thought about the indie game, Minecraft, and its LAN server capabilities. So I booted up Minecraft and set to work to see what I could do with it.
+### Test One
+The first test was starting a LAN server on one of my worlds and copied the server port. A quick visit to [localhost:44169](localhost:44169) with Google Chrome returned an invalid response, which boggled me since I had never really thought about other protocols for any kind of servers (FTP is one I had heard of).
+### Test Two
+Next, I opened the terminal in Ubuntu 18.04 and tried to ping my own server.
+```console
+foo@bar:~$ ping localhost:44169
+ping: localhost:44169: Name or service not known
+```
+And, I am a dummy. I switched to nping and got a real response.
+```console
+foo@bar:~$ nping -p 44169 127.0.0.1
+Starting Nping 0.7.60 ( https://nmap.org/nping ) at 2019-01-11 14:37 CST
+SENT (0.0021s) Starting TCP Handshake > 127.0.0.1:44169
+RCVD (0.0021s) Handshake with 127.0.0.1:44169 completed
+SENT (1.0035s) Starting TCP Handshake > 127.0.0.1:44169
+RCVD (1.0036s) Handshake with 127.0.0.1:44169 completed
+SENT (2.0048s) Starting TCP Handshake > 127.0.0.1:44169
+RCVD (2.0049s) Handshake with 127.0.0.1:44169 completed
+SENT (3.0061s) Starting TCP Handshake > 127.0.0.1:44169
+RCVD (3.0062s) Handshake with 127.0.0.1:44169 completed
+SENT (4.0075s) Starting TCP Handshake > 127.0.0.1:44169
+RCVD (4.0076s) Handshake with 127.0.0.1:44169 completed
+ 
+Max rtt: 0.078ms | Min rtt: 0.018ms | Avg rtt: 0.054ms
+TCP connection attempts: 5 | Successful connections: 5 | Failed: 0 (0.00%)
+Nping done: 1 IP address pinged in 4.01 seconds
+```
+I then had a glimpse into what protocol Minecraft used: TCP. Luckily, there is an extremely helpful wiki called [Minecraft Modern](wiki.vg) for developers which gave me further documentation in the Minecraft protocol. Unfortunately, it's pretty dense and is written for a Java parser, which is understandable considering the game's base language. I decided to toss the wiki and settle for my TCP answer.
+### Python Handshaking
+I wrote a TCP sending and recieving script (I say wrote but I took it from [here](https://wiki.python.org/moin/TcpCommunication)).
+```python
+#!/usr/bin/env python
+
+import socket
+
+TCP_IP = "127.0.0.1"
+TCP_PORT = 44169
+BUFFER_SIZE = 1024
+MESSAGE = "Hi, Minecraft"
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((TCP_IP, TCP_PORT))
+s.send(MESSAGE)
+data = s.recv(BUFFER_SIZE)
+s.close()
+
+print "It said:", data
+```
+Upon running this, it ran for a while (to timeout) and returned a blank response. Huh.
